@@ -1,23 +1,23 @@
-import logo from './logo.svg';
+import React, {useState} from 'react';
 import './App.css';
+import ColorForm from './Components/ColorForm';
+import ColorDisplay from './Components/ColorDisplay';
+
+
 
 function App() {
+  const [currentColor , setCurrentColor] = useState("");
+
+  const setToNewColor = ( newColor ) => {
+    setCurrentColor( newColor );
+
+  }
+  //setToNewColor is the entire function itself which is being passed as a prop into the component, then the component can use the onNewColor prop with a color passed in, which 
+  //runs the setToNewColor function inside of App, taking the newColor and setting it to currentColor
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <ColorForm onNewColor = { setToNewColor }/> 
+      <ColorDisplay color = { currentColor } />
     </div>
   );
 }
