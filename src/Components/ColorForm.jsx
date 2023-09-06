@@ -8,6 +8,9 @@ export const ColorForm = (props) => {
         e.preventDefault();
         props.onNewColor(color);
         setColor("");
+
+
+
     }
     return (
         <div className = "App">

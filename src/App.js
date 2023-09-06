@@ -7,17 +7,36 @@ import ColorDisplay from './Components/ColorDisplay';
 
 function App() {
   const [currentColor , setCurrentColor] = useState("");
+  const [colors, setColors] = useState([]); //creates state variable named 'colors' and initializes with empty array
 
+
+  //setToNewColor is the entire function itself which is being passed as a prop into the component, then the component can use the onNewColor prop with a color passed in, which 
+  //runs the setToNewColor function inside of App, taking the newColor and using it for setColors
   const setToNewColor = ( newColor ) => {
-    setCurrentColor( newColor );
+   // setCurrentColor( newColor );
+    
+    setColors([...colors, newColor]); //copies all previous colors along with new color into array
+
 
   }
-  //setToNewColor is the entire function itself which is being passed as a prop into the component, then the component can use the onNewColor prop with a color passed in, which 
-  //runs the setToNewColor function inside of App, taking the newColor and setting it to currentColor
+
   return (
     <div>
       <ColorForm onNewColor = { setToNewColor }/> 
-      <ColorDisplay color = { currentColor } />
+        <div className = 'container'>
+          {
+              colors.map((color, index) => ( //It takes two parameters: color (the current element in the array) and index (the index of the current element).
+              //Iterates through each element of array and returns a new array with modified elements based on provided function
+                <ColorDisplay key = {index} color = {color} /> //    This JSX code generates a <ColoredBox /> component for each color in the colors array. 
+                        //key={index} is used to provide a unique identifier for each <ColoredBox /> component. 
+                        //It's essential for React to efficiently update and manage the list of components when items are added or removed from the array. 
+                        //color={color} is passing the color value as a prop to the <ColoredBox /> component. 
+                        //This prop is used by the <ColoredBox /> component to determine the background color of the box it renders.
+              ))
+              
+          }
+        </div>
+      
     </div>
   );
 }
