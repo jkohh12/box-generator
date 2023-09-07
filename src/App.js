@@ -42,3 +42,19 @@ function App() {
 }
 
 export default App;
+
+
+//
+// const MyComponent = props => {
+//   const onClickHandler = (e, value) => {
+//       alert(value);
+//   }
+
+//   return props.movies.map( (item, index) => { 
+//       return <button onClick={ (e) => onClickHandler(e, item) }>{ item }</button> //calling onClickHandler, but also passing in item value so that it can alert with the value
+//   });
+// }
+// I think you could also do
+// return <button onClick={ (e) => onClickHandler(item) }>{ item }</button>
+// and change const onClickHandler = (e, value) => { to const onClickHandler = (e) => {
+// only difference is that e won't be passed, and won't be used
